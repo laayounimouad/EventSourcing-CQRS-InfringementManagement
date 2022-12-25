@@ -1,6 +1,23 @@
 
 ## Class Diagram
-
+![](pictures/1.png)
+## MicroServices 
+![](pictures/2.png)
+## RadarService
+Create radar :![](pictures/3.png)
+Update radar :![](pictures/4.png)
+GetAll Radars:![](pictures/5.png)
+## ImmatriculationServie
+Create Owner :![](pictures/6.png)
+Create Vehicule:![](pictures/7.png)
+Update Owner:![](pictures/8.png)
+Update Vehicule:![](pictures/9.png)
+GetAll Owners:![](pictures/10.png)
+GetAllVehicules:![](pictures/11.png)
+Get Vehicules By Owner :![](pictures/12.png)
+## InfractionService
+create Infraction : ![](pictures/13.png)
+getAll infractions: ![](pictures/14.png)
 ## dependencies
 - All:
   - jpa
@@ -60,6 +77,12 @@
 - InfractionService :
   - Same As previous service
   - OpenFeign
+  - ```
+          <dependency>
+			  <groupId>org.springframework.cloud</groupId>
+			  <artifactId>spring-cloud-starter-openfeign</artifactId>
+		  </dependency>
+    ```
 - Common-Api : maven project
   - Lombok
     ```xml
@@ -229,7 +252,23 @@ eureka.client.register-with-eureka=false
 !problems
  2.5.13
    @CrossOrigin("*")
-  could not find concurrent : fix --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.concurrent=ALL-UNNAMED
 
-  java.lang.IllegalStateException: Error processing condition on org.springframework.cloud.loadbalancer.config.LoadBalancerAutoConfiguration.loadBalancerClientFactory
+  could not find concurrent : fix  --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.concurrent=ALL-UNNAMED
+
+  java.lang.IllegalStateException: loadBalancerClientFactory
     fix : check that you have the same spring version in all projects
+
+Xstream : fix 
+```java
+
+	@Bean
+	public XStream xStream() {
+		XStream xStream = new XStream();
+
+		xStream.allowTypesByWildcard(new String[] { "**" });
+		return xStream;
+	}
+```
+spring version :
+<version>2.7.6</version>
+<spring-cloud.version>2021.0.5</spring-cloud.version>

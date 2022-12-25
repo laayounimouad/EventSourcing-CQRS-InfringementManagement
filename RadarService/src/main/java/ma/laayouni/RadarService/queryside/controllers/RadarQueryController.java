@@ -14,7 +14,7 @@ import queries.radar.GetAllRadarsQuery;
 import java.util.List;
 
 @RestController
-@RequestMapping("/query/radar")
+@RequestMapping("/queries/radar")
 @AllArgsConstructor
 @Slf4j
 public class RadarQueryController {

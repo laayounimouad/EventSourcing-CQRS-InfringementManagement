@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import queries.owner.GetAllOwnersQuery;
 import queries.vehicule.GetAllVehiculesQuery;
+import queries.vehicule.GetVehiculeByIdQuery;
 import queries.vehicule.GetVehiculesByOwnerQuery;
 
 import java.util.List;
@@ -33,6 +34,12 @@ public class VehiculeQueryController {
     @GetMapping("/byOwnerId/{ownerId}")
     public List<Vehicule> vehiculesByOwnerList(@PathVariable String ownerId) {
         List<Vehicule> response = queryGateway.query(new GetVehiculesByOwnerQuery(ownerId), ResponseTypes.multipleInstancesOf(Vehicule.class)).join();
+        return response;
+    }
+
+    @GetMapping("byId/{id}")
+    public Vehicule vehiculesByOwnerList(@PathVariable String id) {
+        Vehicule response = queryGateway.query(new GetVehiculeByIdQuery(id), ResponseTypes.instanceOf(Vehicule.class)).join();
         return response;
     }
 }
