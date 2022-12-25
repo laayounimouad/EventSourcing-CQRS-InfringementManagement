@@ -7,6 +7,7 @@ import events.radar.RadarUpdatedEvent;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ma.laayouni.InfractionService.querySide.entities.Infraction;
+import ma.laayouni.InfractionService.querySide.entities.Vehicule;
 import ma.laayouni.InfractionService.querySide.repositories.InfractionRepository;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
@@ -25,6 +26,7 @@ import java.util.List;
 @Transactional
 public class InfractionServiceHandler {
     private InfractionRepository infractionRepository;
+    private VehiculeRestClientService vehiculeRestClientService;
 
     @EventHandler
     public void on(InfractionCreatedEvent event) {
@@ -64,5 +66,10 @@ public class InfractionServiceHandler {
     @QueryHandler
     public List<Infraction> on(GetInfractionsByMatriculeQuery query){
         return infractionRepository.findByVehicule_matricule(query.getMatricule());
+    }
+
+    @QueryHandler
+    public Vehicule on(GetInfractionsByMatriculeQuery query){
+        return vehiculeRestClientService.vehiculebyId(query.());
     }
 }

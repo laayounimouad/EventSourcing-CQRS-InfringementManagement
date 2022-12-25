@@ -37,8 +37,8 @@ public class VehiculeQueryController {
         return response;
     }
 
-    @GetMapping("byId/{id}")
-    public Vehicule vehiculesByOwnerList(@PathVariable String id) {
+    @GetMapping("/byId/{id}")
+    public Vehicule vehiculesByIdList(@PathVariable String id) {
         Vehicule response = queryGateway.query(new GetVehiculeByIdQuery(id), ResponseTypes.instanceOf(Vehicule.class)).join();
         return response;
     }

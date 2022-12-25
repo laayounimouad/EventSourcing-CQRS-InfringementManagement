@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "IMMATRICULATION-SERVICE")
 public interface VehiculeRestClientService {
 
-    @GetMapping("")
-    Vehicule vehiuculebyId(@PathVariable Long id);
+    @GetMapping("/queries/vehicule/byId/{id}")
+    Vehicule vehiculebyId(@PathVariable Long id);
 
 }
