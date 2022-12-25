@@ -197,3 +197,4 @@
 
    2.5.13
    @CrossOrigin("*")
+   --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.concurrent=ALL-UNNAMED

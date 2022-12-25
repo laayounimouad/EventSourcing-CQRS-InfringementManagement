@@ -1,28 +1,29 @@
-package ma.laayouni.RadarService.queryside.controllers;
+package ma.laayouni.ImmatriculationService.querySide.controllers;
 
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ma.laayouni.RadarService.queryside.entities.Radar;
+import ma.laayouni.ImmatriculationService.querySide.entities.Owner;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import queries.owner.GetAllOwnersQuery;
 import queries.radar.GetAllRadarsQuery;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/query/radar")
+@RequestMapping("/queries/owner")
 @AllArgsConstructor
 @Slf4j
-public class RadarQueryController {
+public class OwnerQueryController {
     private QueryGateway queryGateway;
 
-    @GetMapping("/allRadars")
-    public List<Radar> radarsList() {
-        List<Radar> response = queryGateway.query(new GetAllRadarsQuery(), ResponseTypes.multipleInstancesOf(Radar.class)).join();
+    @GetMapping("/allOwners")
+    public List<Owner> ownersList() {
+        List<Owner> response = queryGateway.query(new GetAllOwnersQuery(), ResponseTypes.multipleInstancesOf(Owner.class)).join();
         return response;
     }
 }

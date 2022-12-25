@@ -1,5 +1,6 @@
 package ma.laayouni.ImmatriculationService.querySide.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,6 @@ public class Owner {
     private Date date_naissance;
     private String email;
     @OneToMany(mappedBy = "owner")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Vehicule> vehicule;
 }

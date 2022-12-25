@@ -32,7 +32,7 @@ public class OwnerCommandController {
     }
 
     @PutMapping("/update")
-    public CompletableFuture<String> updateRadar(@RequestBody UpdateOwnerRequestDTO request){
+    public CompletableFuture<String> updateOwner(@RequestBody UpdateOwnerRequestDTO request){
         return commandGateway.send(new UpdateOwnerCommand(
                 request.getId(),
                 request.getNom(),
