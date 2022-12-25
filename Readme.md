@@ -195,6 +195,41 @@
   #spring.cloud.discovery.enabled=true
   ```
 
-   2.5.13
+  
+
+### Gateway service
+add class GatewayConfig :
+```java
+@Configuration
+public class GatewayConfig {
+    @Bean
+    DiscoveryClientRouteDefinitionLocator discoveryClientRouteDefinitionLocator(ReactiveDiscoveryClient reactiveDiscoveryClient,
+                                                                                DiscoveryLocatorProperties discoveryLocatorProperties){
+        return new DiscoveryClientRouteDefinitionLocator(reactiveDiscoveryClient, discoveryLocatorProperties);
+    }
+}
+```
+add properties :
+```properties
+eureka.client.register-with-eureka=true
+server.port=7000
+spring.application.name=GATEWAY-SERVICE
+```
+
+### Discovery server
+add to main class `@EnableEurekaServer`
+add to properties :
+```properties
+server.port=8761
+eureka.instance.prefer-ip-address=true
+eureka.client.fetch-registry=false
+eureka.client.register-with-eureka=false
+```
+
+!problems
+ 2.5.13
    @CrossOrigin("*")
-   --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.concurrent=ALL-UNNAMED
+  could not find concurrent : fix --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.concurrent=ALL-UNNAMED
+
+  java.lang.IllegalStateException: Error processing condition on org.springframework.cloud.loadbalancer.config.LoadBalancerAutoConfiguration.loadBalancerClientFactory
+    fix : check that you have the same spring version in all projects
