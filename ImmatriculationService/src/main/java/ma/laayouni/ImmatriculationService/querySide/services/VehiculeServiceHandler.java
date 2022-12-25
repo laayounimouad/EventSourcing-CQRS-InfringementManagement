@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import queries.owner.GetAllOwnersQuery;
 import queries.vehicule.GetAllVehiculesQuery;
+import queries.vehicule.GetVehiculesByOwnerQuery;
 
 import java.util.List;
 
@@ -55,5 +56,10 @@ public class VehiculeServiceHandler {
     @QueryHandler
     public List<Vehicule> on(GetAllVehiculesQuery query){
         return vehiculeRepository.findAll();
+    }
+
+    @QueryHandler
+    public List<Vehicule> on(GetVehiculesByOwnerQuery query){
+        return vehiculeRepository.findVehiculeByOwnerId(query.getOwnerId());
     }
 }

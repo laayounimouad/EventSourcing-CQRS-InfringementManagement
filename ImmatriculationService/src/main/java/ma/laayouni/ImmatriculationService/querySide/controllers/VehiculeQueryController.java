@@ -8,10 +8,12 @@ import ma.laayouni.ImmatriculationService.querySide.entities.Vehicule;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import queries.owner.GetAllOwnersQuery;
 import queries.vehicule.GetAllVehiculesQuery;
+import queries.vehicule.GetVehiculesByOwnerQuery;
 
 import java.util.List;
 
@@ -25,6 +27,12 @@ public class VehiculeQueryController {
     @GetMapping("/allVehicules")
     public List<Vehicule> vehiculesList() {
         List<Vehicule> response = queryGateway.query(new GetAllVehiculesQuery(), ResponseTypes.multipleInstancesOf(Vehicule.class)).join();
+        return response;
+    }
+
+    @GetMapping("/byOwnerId/{ownerId}")
+    public List<Vehicule> vehiculesByOwnerList(@PathVariable String ownerId) {
+        List<Vehicule> response = queryGateway.query(new GetVehiculesByOwnerQuery(ownerId), ResponseTypes.multipleInstancesOf(Vehicule.class)).join();
         return response;
     }
 }
