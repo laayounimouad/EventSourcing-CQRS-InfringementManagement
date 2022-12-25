@@ -6,10 +6,7 @@ import dtos.radar.UpdateRadarRequestDTO;
 import lombok.AllArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.eventsourcing.eventstore.EventStore;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -32,7 +29,7 @@ public class RadarCommandController {
         return response;
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public CompletableFuture<String> updateRadar(@RequestBody UpdateRadarRequestDTO request){
         return commandGateway.send(new UpdateRadarCommand(
                 request.getId(),

@@ -191,6 +191,9 @@
 
   spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MariaDBDialect
   server.port=7002
+  #eureka.instance.prefer-ip-address=true
+  #spring.cloud.discovery.enabled=true
   ```
 
    2.5.13
+   @CrossOrigin("*")

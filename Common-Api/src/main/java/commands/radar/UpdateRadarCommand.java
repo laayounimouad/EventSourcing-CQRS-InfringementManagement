@@ -4,8 +4,7 @@ import commands.BaseCommand;
 import lombok.Getter;
 
 public class UpdateRadarCommand extends BaseCommand<String> {
-    @Getter
-    private double max_vitesse;
+    @Getter private double max_vitesse;
     @Getter private double longitude;
     @Getter private double latitude;
 
